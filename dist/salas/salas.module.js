@@ -6,21 +6,22 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AppModule = void 0;
+exports.SalasModule = void 0;
 const common_1 = require("@nestjs/common");
+const salas_service_1 = require("./salas.service");
+const salas_controller_1 = require("./salas.controller");
 const mongoose_1 = require("@nestjs/mongoose");
-const app_controller_1 = require("./app.controller");
-const app_service_1 = require("./app.service");
-const users_module_1 = require("./users/users.module");
-const salas_module_1 = require("./salas/salas.module");
-let AppModule = class AppModule {
+const sala_entity_1 = require("./entities/sala.entity");
+let SalasModule = class SalasModule {
 };
-AppModule = __decorate([
+SalasModule = __decorate([
     (0, common_1.Module)({
-        imports: [users_module_1.UsersModule, salas_module_1.SalasModule, mongoose_1.MongooseModule.forRoot('mongodb://localhost/sala')],
-        controllers: [app_controller_1.AppController],
-        providers: [app_service_1.AppService],
+        imports: [mongoose_1.MongooseModule.forFeature([{
+                    name: sala_entity_1.Sala.name, schema: sala_entity_1.SalaSchema
+                }])],
+        controllers: [salas_controller_1.SalasController],
+        providers: [salas_service_1.SalasService]
     })
-], AppModule);
-exports.AppModule = AppModule;
-//# sourceMappingURL=app.module.js.map
+], SalasModule);
+exports.SalasModule = SalasModule;
+//# sourceMappingURL=salas.module.js.map
